@@ -1,0 +1,51 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.21/p5.js"></script>
+<script>
+
+var xStart = 0;
+var yStart = 0;
+
+function setup()
+{
+  createCanvas(300, 300);
+  background(0);
+  smooth();
+  frameRate(24);
+
+  xStart = random(10);
+  yStart = random(10);
+}
+
+function draw()
+{
+  background(0);
+  xStart += 0.01;
+  yStart += 0.01;
+
+  var xNoise = xStart;
+  var yNoise = yStart;
+
+  for (var y = 0; y <= height; y+=5) {
+      yNoise += 0.01;
+      xNoise = xStart;
+      for (var x = 0;x <= width; x+=5) {
+          xNoise += 0.01;
+          drawPoint(x, y, noise(xNoise, yNoise));
+      }
+  }
+}
+
+function drawPoint(x, y, noiseFactor)
+{
+    applyMatrix();
+    translate(x, y);
+    rotate(noiseFactor * radians(540));
+    noStroke();
+    var edgeSize = noiseFactor * 35;
+    var grey  = 150 + (noiseFactor * 120);
+    var alpha = 150 + (noiseFactor * 120);
+    fill(grey, alpha);
+    ellipse(0, 0, edgeSize, edgeSize / 2);
+    resetMatrix();
+}
+
+</script>

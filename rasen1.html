@@ -1,0 +1,48 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.21/p5.js"></script>
+<script>
+
+function setup()
+{
+  createCanvas(500, 300);
+  background(255);
+  strokeWeight(0.5);
+  smooth();
+
+  var centerX = 250;
+  var centerY = 150;
+
+  stroke(0, 30);
+  noFill();
+  // ellipse(centerX, centerY, radius * 2, radius * 2);
+
+  stroke(20, 50, 70);
+  var x;
+  var y;
+  for (var i = 0; i < 100; i++) {
+    var lastX = -999;
+    var lastY = -999;
+    var radiusNoise = random(10);
+    var radius = 10;
+    stroke(random(20), random(50), random(70), 80);
+
+    var startAngle = parseInt(random(360));
+    var endAngle = 1440 + parseInt(random(1440));
+    var angleStep = 5 + parseInt(random(3));
+
+    for (var angle = startAngle; angle <= endAngle; angle += angleStep) {
+      radiusNoise += 0.05;
+      radius += 0.5;
+      var thisRadius = radius + (noise(radiusNoise) * 200) - 100;
+      var rad = radians(angle);
+      x = centerX + (thisRadius * cos(rad));
+      y = centerY + (thisRadius * sin(rad));
+      if (lastX > -999) {
+        line(x, y, lastX, lastY);
+      }
+      lastX = x;
+      lastY = y;
+    }
+  }
+}
+
+</script>
