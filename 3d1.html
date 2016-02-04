@@ -1,0 +1,17 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.21/p5.js"></script>
+<script>
+
+function setup()
+{
+  createCanvas(300, 300, 'webgl');
+  sphere(40);
+}
+
+function draw()
+{
+    background(255);
+    translate(random(30) + width / 2, random(30) + height / 2, 0);
+    sphere(100);
+}
+
+</script>

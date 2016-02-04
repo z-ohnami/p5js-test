@@ -11,15 +11,22 @@ function setup()
   smooth();
   frameRate(24);
 
+  xStartNoise = random(20);
+  yStartNoise = random(20);
+
   xStart = random(10);
   yStart = random(10);
 }
 
 function draw()
 {
-  background(0);
-  xStart += 0.01;
-  yStart += 0.01;
+  background(255);
+
+  xStartNoise += 0.01;
+  yStartNoise += 0.01;
+
+  xStart += (noise(xStartNoise) * 0.5) - 0.25;
+  yStart += (noise(yStartNoise) * 0.5) - 0.25;
 
   var xNoise = xStart;
   var yNoise = yStart;
